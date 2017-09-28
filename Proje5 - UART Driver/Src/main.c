@@ -32,9 +32,7 @@ int main(void)
   /* Configure the system clock to have a system clock = 48 Mhz */
   SystemClock_Config();
 
-	UART_Init();
-
-	
+	UART_Init();	
 	user_led_init();
   button_init();
 	

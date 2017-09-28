@@ -11,16 +11,16 @@ void button_init()
 	__HAL_RCC_GPIOC_CLK_ENABLE();	
 	
 	// Select Mode: Input
-	GPIOC->MODER   &= ~((3UL << 26));  // set 00 ==> Input
+	GPIOC->MODER   &= ~(3UL << 26);  // set 00 ==> Input
 	
 	// Select Output Type	
-  GPIOC->OTYPER  &= ~((1UL <<13));   // 0 ==> Push pull
+  GPIOC->OTYPER  &= ~(1UL <<13);   // 0 ==> Push pull
 	
 	// Select Speed	
-  GPIOC->OSPEEDR &= ~((3UL << 26));  // 00 ==> Low speed
+  GPIOC->OSPEEDR &= ~(3UL << 26);  // 00 ==> Low speed
 	
 	// Pull-up pull-down	
-  GPIOC->PUPDR   &= ~((3UL << 26));  // 00 ==> // No pull-up, no pull-down
+  GPIOC->PUPDR   &= ~(3UL << 26);  // 00 ==> // No pull-up, no pull-down
 	
 }
 

@@ -1,0 +1,16 @@
+--cpu Cortex-M0
+"stm32f070rb-nucleo\system_stm32f0xx.o"
+"stm32f070rb-nucleo\main.o"
+"stm32f070rb-nucleo\stm32f0xx_it.o"
+"stm32f070rb-nucleo\led_driver.o"
+"stm32f070rb-nucleo\button_driver.o"
+"stm32f070rb-nucleo\startup_stm32f070xb.o"
+"stm32f070rb-nucleo\stm32f0xx_hal.o"
+"stm32f070rb-nucleo\stm32f0xx_hal_cortex.o"
+"stm32f070rb-nucleo\stm32f0xx_hal_gpio.o"
+"stm32f070rb-nucleo\stm32f0xx_hal_rcc.o"
+"stm32f070rb-nucleo\stm32f0xx_hal_rcc_ex.o"
+--library_type=microlib --strict --scatter "STM32F070RB-Nucleo\STM32F070RB-Nucleo.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "STM32F070RB-Nucleo.map" -o STM32F070RB-Nucleo\STM32F070RB-Nucleo.axf

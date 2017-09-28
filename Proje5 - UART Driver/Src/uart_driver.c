@@ -1,10 +1,10 @@
 #include "button_driver.h"
-#include "uart_driver.h"
 #include "stm32f0xx_hal.h"
-
+#include "uart_buffer.h"
 
 
 UART_HandleTypeDef UartHandle;
+
 static void UART_Error_Handler(void);
 
 
@@ -41,7 +41,6 @@ GPIO_InitTypeDef  GPIO_InitStruct;
     
   /* UART RX GPIO pin configuration  */
   GPIO_InitStruct.Pin = GPIO_PIN_3;
-  GPIO_InitStruct.Alternate = GPIO_AF1_USART2;
     
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
     
