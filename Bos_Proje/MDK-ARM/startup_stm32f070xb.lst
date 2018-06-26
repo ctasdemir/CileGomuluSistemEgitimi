@@ -395,11 +395,12 @@ ARM Macro Assembler    Page 7
 
 
 ork --depend=stm32f070rb-nucleo\startup_stm32f070xb.d -ostm32f070rb-nucleo\star
-tup_stm32f070xb.o -I.\RTE\_STM32F070RB-GPIOExample -ID:\Embedded\Keil_v5\ARM\PA
-CK\ARM\CMSIS\5.0.1\CMSIS\Include -ID:\Embedded\Keil_v5\ARM\PACK\Keil\STM32F0xx_
-DFP\1.5.0\Device\Include --predefine="__MICROLIB SETA 1" --predefine="__UVISION
-_VERSION SETA 523" --predefine="_RTE_ SETA 1" --predefine="STM32F070xB SETA 1" 
---list=startup_stm32f070xb.lst startup_stm32f070xb.s
+tup_stm32f070xb.o -ID:\Github\CileGomuluSistemEgitimi\Bos_Proje\MDK-ARM\RTE -IC
+:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta12\CMSIS\Include -IC:\Keil_v5\ARM\PACK\K
+eil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include --predefine="
+__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 521" --predefine="_RTE_ 
+SETA 1" --predefine="STM32F070xB SETA 1" --list=startup_stm32f070xb.lst startup
+_stm32f070xb.s
 
 
 

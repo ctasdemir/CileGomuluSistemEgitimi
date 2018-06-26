@@ -91,7 +91,7 @@ int main(void)
   {
 		BSP_LED_Toggle(LED2);
 		HAL_Delay(1000);
-  }
+  }	
 }
 
 /**
