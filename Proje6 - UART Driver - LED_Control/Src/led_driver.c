@@ -1,8 +1,6 @@
 #include "led_driver.h"
+#include "stm32f070xb.h"
 #include "stm32f0xx_hal.h"
-#include "main.h"
-
-
 
 
 void user_led_init()
@@ -29,7 +27,6 @@ void user_led_init()
 }
 
 
-
 void user_led_toggle()
 {
 	GPIOA->ODR ^= GPIO_PIN_5;
@@ -45,3 +42,4 @@ void user_led_reset()
 {
 	GPIOA->BRR = GPIO_PIN_5;
 }
+

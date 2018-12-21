@@ -49,7 +49,8 @@ int main(void)
 	{
 		if(button_get_state() == 0){		
 			
-			//while(button_get_state() == 0);
+		while(button_get_state() == 0)
+			;
 			
 			if(led_state == 0){
 			user_led_set();

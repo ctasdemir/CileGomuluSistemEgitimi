@@ -11,6 +11,6 @@
 "stm32f070rb-nucleo\stm32f0xx_hal_rcc.o"
 "stm32f070rb-nucleo\stm32f0xx_hal_rcc_ex.o"
 --library_type=microlib --strict --scatter "STM32F070RB-Nucleo\STM32F070RB-Nucleo.sct"
---summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "STM32F070RB-Nucleo.map" -o STM32F070RB-Nucleo\STM32F070RB-Nucleo.axf

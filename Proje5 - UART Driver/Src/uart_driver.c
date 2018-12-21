@@ -1,7 +1,9 @@
 #include "button_driver.h"
 #include "stm32f0xx_hal.h"
 #include "uart_buffer.h"
+#include <math.h>
 
+#define PI 3.1415
 
 UART_HandleTypeDef UartHandle;
 
@@ -33,7 +35,7 @@ GPIO_InitTypeDef  GPIO_InitStruct;
 	
   GPIO_InitStruct.Pin       = GPIO_PIN_2;
   GPIO_InitStruct.Mode      = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull      = GPIO_PULLUP;
+  GPIO_InitStruct.Pull      = GPIO_NOPULL;
   GPIO_InitStruct.Speed     = GPIO_SPEED_FREQ_HIGH;
   GPIO_InitStruct.Alternate = GPIO_AF1_USART2;
   
@@ -41,6 +43,10 @@ GPIO_InitTypeDef  GPIO_InitStruct;
     
   /* UART RX GPIO pin configuration  */
   GPIO_InitStruct.Pin = GPIO_PIN_3;
+	GPIO_InitStruct.Mode      = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull      = GPIO_NOPULL;
+  GPIO_InitStruct.Speed     = GPIO_SPEED_FREQ_HIGH;
+  GPIO_InitStruct.Alternate = GPIO_AF1_USART2;
     
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
     
@@ -81,7 +87,7 @@ GPIO_InitTypeDef  GPIO_InitStruct;
 	
 	/* 5 - Enable UART Interrupt in NVIC */
 	
-  HAL_NVIC_SetPriority(USART2_IRQn, 0, 1);
+  HAL_NVIC_SetPriority(USART2_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(USART2_IRQn);
 }
 
@@ -106,11 +112,18 @@ void send_time_string()
 {
 
 	uint32_t n = 0;
-	static uint32_t zaman;
-	zaman++;
+	float f;
+	static uint32_t time;
+	time++;
 	
 	n = UART_bytes_to_read();
-	printf("zaman:%d gelen_veri:%d Buton Durum:%d\n\r",zaman,n,button_get_state());
+  printf("zaman:%d gelen_veri:%d Buton Durum:%d\n\r",time,n,button_get_state());
+	
+for( f = 0; f <= 2*PI; f+=0.1){
+	
+	printf("%f\n",sin(f)+cos(f)+sin(2*f));
+	HAL_Delay(50);
+}
 }
 
 

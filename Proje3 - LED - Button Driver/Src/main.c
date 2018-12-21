@@ -38,10 +38,15 @@ int main(void)
   while (1)
   {
 		if(button_get_state() == BUTTON_ON){		
-			user_led_set();					
+			user_led_set();	
+      HAL_Delay(100);		
+      user_led_reset();	
+     HAL_Delay(100);				
+			
 		}
 		else{		
-			user_led_reset();		
+			user_led_toggle();	
+      HAL_Delay(500);		
 		}
   }
 }

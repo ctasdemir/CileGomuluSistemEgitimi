@@ -36,7 +36,12 @@ int main(void)
 	user_led_init();
   button_init();
 	
+	while(1){
+		send_time_string();
+		}
+	
   /* Infinite loop */
+	/*
   while (1)
   {
 		if(button_get_state() == 0){
@@ -47,9 +52,9 @@ int main(void)
 		else{
 			user_led_toggle();
 			send_time_string();
-			HAL_Delay(100);
+			HAL_Delay(500);
 		}
-  }
+  }*/
 }
 
 /**

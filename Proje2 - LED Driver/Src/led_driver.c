@@ -10,35 +10,46 @@ void user_led_init()
 	__HAL_RCC_GPIOA_CLK_ENABLE();	
 	
 	// Select Mode
-	GPIOA->MODER   &= ~(3 << 10); // zero bits
-  GPIOA->MODER   |=  (1 << 10); // set 01 (output)
+	// BIT 10: 1
+	// BIT 11: 0
+	GPIOA->MODER   &= ~(1 << 11); // Bit 11 : 0
+  GPIOA->MODER   |=  (1 << 10); // Bit 10 : 1
+	
 	
 	// Select Output Type	
-  GPIOA->OTYPER  &= ~(1UL <<5); // 0 - Push - pull output
+	// Bit 5 : 0
+  GPIOA->OTYPER  &= ~(1<<5); // 0 - Push - pull output
 	
 	// Select Speed	
-  GPIOA->OSPEEDR &= ~(3UL << 10); // Zero bits
-  GPIOA->OSPEEDR |=  (1UL << 10); // 01 Medium Speed
+	// Bit 10: 1
+	// Bit 11: 0
+  GPIOA->OSPEEDR &= ~(1 << 11); // Bit 11: 0
+  GPIOA->OSPEEDR |=  (1 << 10); // Bit 10: 1
 	
-	// Pull-up pull-down	
-  GPIOA->PUPDR   &= ~(3UL << 10); // No pull-up, no pull-down	
+	// Pull-up pull-down
+  // Bit 10 : 0 
+  // Bit 11 :	0
+  GPIOA->PUPDR   &= ~(1 << 11); // No pull-up, no pull-down	
+	GPIOA->PUPDR   &= ~(1 << 10); // No pull-up, no pull-down	
 }
 
 
 void user_led_toggle()
 {
-	GPIOA->ODR ^= GPIO_PIN_5;
+	GPIOA->ODR ^= (1<<5);
 }
 
 
 void user_led_set()
 {
-	GPIOA->BSRR = GPIO_PIN_5;
+	// Bit 5 : 1
+	GPIOA->BSRR = (1<<5);
 }
 
 void user_led_reset()
 {
-	GPIOA->BRR = GPIO_PIN_5;
+	// Bit 5 : 1
+	GPIOA->BRR = (1<<5);
 }
 
 
