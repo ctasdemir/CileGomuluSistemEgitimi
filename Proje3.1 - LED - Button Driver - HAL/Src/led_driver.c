@@ -6,40 +6,33 @@
 void user_led_init()
 {
 	//LED2 ==>  GPIOA - 5. pin
+	GPIO_InitTypeDef gpio_init;
 	
 	// Enable Clock
 	__HAL_RCC_GPIOA_CLK_ENABLE();	
 	
-	// Select Mode
-	GPIOA->MODER   &= ~((3UL << 10)); // zero bits
-  GPIOA->MODER   |=  ((1UL << 10)); // set 01 (output)
-	
-	// Select Output Type	
-  GPIOA->OTYPER  &= ~((1UL <<5)); // 0 - Push - pull output
-	
-	// Select Speed	
-  GPIOA->OSPEEDR &= ~((3UL << 10)); // Zero bits
-  GPIOA->OSPEEDR |=  ((1UL << 10)); // 01 Medium Speed
-	
-	// Pull-up pull-down	
-  GPIOA->PUPDR   &= ~((3UL << 10)); // No pull-up, no pull-down
+	gpio_init.Mode = GPIO_MODE_OUTPUT_PP;
+	gpio_init.Pin = GPIO_PIN_5;
+	gpio_init.Pull = GPIO_NOPULL;
+	gpio_init.Speed = GPIO_SPEED_FREQ_HIGH;
+
+  HAL_GPIO_Init(GPIOA,&gpio_init);	
 	
 }
 
 
 void user_led_toggle()
 {
-	GPIOA->ODR ^= GPIO_PIN_5;
+	HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_5);
 }
-
-
+	
 void user_led_set()
 {
-	GPIOA->BSRR = GPIO_PIN_5;
+	HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_SET);	
 }
 
 void user_led_reset()
 {
-	GPIOA->BRR = GPIO_PIN_5;
+	HAL_GPIO_WritePin(GPIOA,GPIO_PIN_5,GPIO_PIN_RESET);	
 }
 
