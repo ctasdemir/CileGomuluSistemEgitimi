@@ -1,5 +1,4 @@
 stm32f070rb-nucleo\led_driver.o: ..\Src\led_driver.c
-stm32f070rb-nucleo\led_driver.o: ../Inc/led_driver.h
 stm32f070rb-nucleo\led_driver.o: ../../Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f070xb.h
 stm32f070rb-nucleo\led_driver.o: C:\Keil\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\core_cm0.h
 stm32f070rb-nucleo\led_driver.o: C:\Keil\ARM\ARMCC\Bin\..\include\stdint.h
