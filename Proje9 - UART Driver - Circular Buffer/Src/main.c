@@ -39,23 +39,7 @@ int main(void)
 	
 	while(1){
 		send_time_string();
-		}
-	
-  /* Infinite loop */
-	/*
-  while (1)
-  {
-		if(button_get_state() == 0){
-			user_led_toggle();
-			send_time_string();
-			HAL_Delay(1000);			
-		}
-		else{
-			user_led_toggle();
-			send_time_string();
-			HAL_Delay(500);
-		}
-  }*/
+		} 
 }
 
 /**
