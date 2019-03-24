@@ -12,12 +12,14 @@
 #include "UART_driver.h"
 #include "led_driver.h"
 #include "button_driver.h"
+#include <string.h>
 
-
+extern volatile uint8_t data_buffer[10];
+extern volatile uint32_t data_flag;
 
 static void SystemClock_Config(void);
 static void Error_Handler(void);
-
+void send_time_string(void);
 
 
 
@@ -28,7 +30,6 @@ static void Error_Handler(void);
   */
 int main(void)
 {
-	uint8_t data = 0;
   HAL_Init();
 
   /* Configure the system clock to have a system clock = 48 Mhz */
@@ -40,27 +41,22 @@ int main(void)
 	
 	while(1)
 	{
-	 
-		if((USART2->ISR & USART_ISR_RXNE) != 0 ){
-		
-    data = USART2->RDR;
-		
-		if (data == 'A')
+		if(data_flag)
 		{
-			user_led_set();
+			data_flag = 0;
+			data_buffer[6] = '\0';
+			
+			if(strcmp("LEDYAK",(char*)data_buffer) == 0)
+			{
+				user_led_set();
+			}
+			else if(strcmp("LEDSON",(char*)data_buffer) == 0)
+			{
+				user_led_reset();
+			}
 		}
-		else if(data == 'B')
-		{
-		  user_led_reset();
-		}
-		
-	}
-		
-	//......
-	//......
-	// 50 ms
-		
-	}
+	}	
+  
 }
 
 /**
@@ -119,5 +115,4 @@ static void Error_Handler(void)
   {
   }
 }
-
 

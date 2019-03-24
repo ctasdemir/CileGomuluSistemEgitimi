@@ -19,11 +19,14 @@
       	   Parity = None
            BaudRate = 9600 baud
            Hardware flow control disabled (RTS and CTS signals)
- 
+
   * @param void
   * @retval void
   */
 void UART_Init(void);
-
+void UART_send_byte_array(uint8_t* buffer, uint32_t size);
+int32_t UART_read_byte(void);
+void UART_send_byte(uint8_t data);
+int UART_bytes_to_read(void);
 
 #endif

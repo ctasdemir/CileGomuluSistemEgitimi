@@ -40,7 +40,11 @@ int main(void)
 	while(1)
 	{
 	  USART2->TDR = 'A';
-		while((USART2->ISR & USART_ISR_TXE) == 0 );		
+
+		
+		while((USART2->ISR & USART_ISR_TXE) == 0 )
+			;		
+		
 		USART2->TDR = 'B';
 		while((USART2->ISR & USART_ISR_TXE) == 0 );
 		USART2->TDR = 'C';

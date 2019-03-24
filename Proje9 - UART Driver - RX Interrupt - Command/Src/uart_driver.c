@@ -8,6 +8,9 @@
 UART_HandleTypeDef UartHandle;
 
 uint32_t rx_data = 0;
+volatile uint8_t data_buffer[10];
+volatile uint32_t data_flag = 0;
+uint32_t cnt = 0;
 
 
 static void UART_Error_Handler(void);
@@ -123,7 +126,16 @@ void USART2_IRQHandler(void)
     /* UART in mode Receiver */
     if(((isrflags & USART_ISR_RXNE) != RESET) && ((control_reg1 & USART_CR1_RXNEIE) != RESET))
     {
-			rx_data = (uint16_t) USART2->RDR;
+			data_buffer[cnt] = (uint16_t) USART2->RDR;
+			cnt++;
+			if(cnt == 6)
+			{
+				cnt = 0;
+				data_flag = 1;
+				
+			}
+			
+			
 			
       return;
     }  
