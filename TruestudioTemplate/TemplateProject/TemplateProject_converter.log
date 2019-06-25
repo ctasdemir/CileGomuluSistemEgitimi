@@ -1,0 +1,21 @@
+Project: TemplateProject
+Converter: Atollic TrueSTUDIO project converter
+Date: 20190613
+
+Post-build step might need some manual actions.
+Warning: Failed to find matching mcu for null
+Option com.atollic.truestudio.common_options.target.endianess is no longer supported
+Option com.atollic.truestudio.common_options.target.instr_set is no longer supported
+Failed to update value for com.atollic.truestudio.gcc.symbols.defined on toolchain com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.assembler.1097382639
+Unknown value type "" for id com.atollic.truestudio.common_options.target.interwork on tool com.atollic.truestudio.exe.debug.toolchain.gcc
+Option com.atollic.truestudio.common_options.target.endianess is no longer supported
+Option com.atollic.truestudio.common_options.target.instr_set is no longer supported
+Option com.atollic.truestudio.common_options.target.endianess is no longer supported
+Option com.atollic.truestudio.common_options.target.instr_set is no longer supported
+Unknown value type "" for id com.atollic.truestudio.gpp.optimization.fno_rtti on tool com.atollic.truestudio.exe.debug.toolchain.gpp
+Unknown value type "" for id com.atollic.truestudio.gpp.optimization.fno_exceptions on tool com.atollic.truestudio.exe.debug.toolchain.gpp
+Option com.atollic.truestudio.common_options.target.endianess is no longer supported
+Option com.atollic.truestudio.common_options.target.instr_set is no longer supported
+Option com.atollic.truestudio.common_options.target.endianess is no longer supported
+Option com.atollic.truestudio.common_options.target.instr_set is no longer supported
+No map found for id: com.atollic.truestudio.exe.release
