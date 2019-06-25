@@ -24,9 +24,43 @@
   * @retval void
   */
 void UART_Init(void);
-void UART_send_byte_array(uint8_t* buffer, uint32_t size);
-int32_t UART_read_byte(void);
+
+/**
+  * @brief UART Transmitter Function:
+  * 	     Sends one byte through UART
+
+  * @param data
+  * @retval void
+  */
 void UART_send_byte(uint8_t data);
+
+/**
+  * @brief UART Transmitter Function:
+  * 	     Sends an array through UART
+
+  * @param buffer to send
+	* @param size
+  * @retval void
+  */
+	
+void UART_send_byte_array(uint8_t* buffer, uint32_t size);
+
+/**
+  * @brief UART Receiver Function:
+  * 	     Reads one byte from UART buffer
+
+  * @param None
+  * @retval byte from the UART receiver buffer
+	          -1 : if there's no data to read 
+  */
+int32_t UART_read_byte(void);
+
+/**
+  * @brief Returns the number of bytes
+					 waiting in the UART receive buffer
+  * @param  None
+  * @retval int 
+  */
 int UART_bytes_to_read(void);
 
 #endif

@@ -1,10 +1,10 @@
 /**
   ******************************************************************************
-  * @file    Templates/Src/main.c 
-  * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    04-November-2016
-  * @brief   Main program body
+  * @file    main.c 
+  * @author  C.T
+  * @version 
+  * @date    
+  * @brief   
   ******************************************************************************/
 
 /* Includes ------------------------------------------------------------------*/

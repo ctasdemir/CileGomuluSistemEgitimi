@@ -79,12 +79,7 @@ int main(void)
   /* Configure the system clock to have a system clock = 48 Mhz */
   SystemClock_Config();
 
-
-  /* Add your application code here
-     */
-	
 	BSP_LED_Init(LED2);
-
 
   /* Infinite loop */
   while (1)

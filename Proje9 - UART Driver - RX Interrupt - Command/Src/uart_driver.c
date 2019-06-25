@@ -23,7 +23,7 @@ static void UART_Error_Handler(void);
   RX kesmelerini aktif hale getirir.
 
 */
-void UART_Init()
+void UART_Init(void)
 {
 	
 GPIO_InitTypeDef  GPIO_InitStruct;
@@ -133,10 +133,7 @@ void USART2_IRQHandler(void)
 				cnt = 0;
 				data_flag = 1;
 				
-			}
-			
-			
-			
+			}			
       return;
     }  
 
