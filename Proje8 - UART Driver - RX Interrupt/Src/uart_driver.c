@@ -85,7 +85,7 @@ GPIO_InitTypeDef  GPIO_InitStruct;
 	
 	/* 5 - Enable UART Interrupt in NVIC */
 	
-  HAL_NVIC_SetPriority(USART2_IRQn, 0, 1);
+  HAL_NVIC_SetPriority(USART2_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(USART2_IRQn);
 }
 
@@ -123,7 +123,7 @@ void USART2_IRQHandler(void)
     /* UART in mode Receiver */
     if(((isrflags & USART_ISR_RXNE) != RESET) && ((control_reg1 & USART_CR1_RXNEIE) != RESET))
     {
-			rx_data = (uint16_t) USART2->RDR;
+			rx_data = (uint8_t)USART2->RDR;
 			
       return;
     }  

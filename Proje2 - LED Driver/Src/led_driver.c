@@ -13,7 +13,7 @@ void user_led_init()
 	// BIT 10: 1
 	// BIT 11: 0
 	GPIOA->MODER   &= ~(1 << 11); // Bit 11 : 0
-  GPIOA->MODER   |=  (1 << 10); // Bit 10 : 1
+    GPIOA->MODER   |=  (1 << 10); // Bit 10 : 1
 	
 	
 	// Select Output Type	

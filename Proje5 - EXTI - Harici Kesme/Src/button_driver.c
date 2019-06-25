@@ -16,42 +16,23 @@ void button_init()
 	// Select Mode: Input
 	GPIOC->MODER   &= ~((3UL << 26));  // set 00 ==> Input
 	
-	// Select Output Type	
-  GPIOC->OTYPER  &= ~((1UL <<13));   // 0 ==> Push pull
-	
-	// Select Speed	
-  GPIOC->OSPEEDR &= ~((3UL << 26));  // 00 ==> Low speed
-	
 	// Pull-up pull-down	
   GPIOC->PUPDR   &= ~((3UL << 26));  // 00 ==> // No pull-up, no pull-down
 	
 	// Select EXTI_13 ==> GPIOC
-	SYSCFG->EXTICR[3] |= SYSCFG_EXTICR4_EXTI13_PC;
+	SYSCFG->EXTICR[3] |= SYSCFG_EXTICR4_EXTI13_PC; // 	SYSCFG->EXTICR[3] |= 0x20;
 	
 	// EXTI13 Interrupt unmask
-	EXTI->IMR |= EXTI_IMR_IM13;
+	EXTI->IMR |= EXTI_IMR_IM13; // EXTI->IMR |= (1<<13); 
 	
 	// EXTI13 Interrupt falling edge
-	EXTI->FTSR |= EXTI_FTSR_TR13;
+	EXTI->FTSR |= EXTI_FTSR_TR13; // EXTI->FTSR |= (1<<13);
 	
 	// set EXTI4_14 Priority on NVIC
 	NVIC_SetPriority(EXTI4_15_IRQn,1);
 
 	// Enable EXTI4_15 Interrupt on NVIC
 	NVIC_EnableIRQ(EXTI4_15_IRQn);	
-}
-
-int32_t button_get_state(void)
-{
-	//BUTTON ==>  GPIOC - 13. pin
-	if( (GPIOC->IDR & GPIO_PIN_13) )
-	{
-		return 1;
-	}
-	else
-	{
-		return 0;
-	}	
 }
 
 
