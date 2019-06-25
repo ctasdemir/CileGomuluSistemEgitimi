@@ -154,4 +154,4 @@ void send_time_string(void)
 	printf("zaman:%d gelen_veri:%d Buton Durum:%d\n\r",zaman,n,button_get_state());
 }
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+

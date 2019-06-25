@@ -22,20 +22,11 @@ void button_init()
 	// Bit 26: 0
 	// Bit 27: 0
 	GPIOC->MODER   &= ~(3UL << 26);  // set 00 ==> Input
-	
-	// Select Output Type	
-	// Bit 13: 0
-  GPIOC->OTYPER  &= ~(1UL <<13);   // 0 ==> Push pull
-	
-	// Select Speed	
-	// Bit 26: 0
-	// Bit 27: 0
-  GPIOC->OSPEEDR &= ~(3UL << 26);  // 00 ==> Low speed
-	
+
 	// Pull-up pull-down	
 	// Bit 26: 0
 	// Bit 27: 0  
-  GPIOC->PUPDR   &= ~(3UL << 26);  // 00 ==> // No pull-up, no pull-down
+    GPIOC->PUPDR   &= ~(3UL << 26);  // 00 ==> // No pull-up, no pull-down
 	
 }
 

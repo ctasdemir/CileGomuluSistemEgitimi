@@ -7,8 +7,6 @@
 
 UART_HandleTypeDef UartHandle;
 
-
-
 typedef struct UART_Buffer_Type{
 	uint32_t buffer[BUFFER_SIZE];
 	uint32_t head_pointer;
@@ -19,6 +17,7 @@ volatile UART_Buffer_t UART_BufferRX;
 volatile UART_Buffer_t UART_BufferTX;
 
 static int32_t UART_is_buffer_empty(volatile UART_Buffer_t* buffer);
+
 static void UART_Error_Handler(void);
 
 
@@ -158,17 +157,14 @@ void USART2_IRQHandler(void)
 {  
   uint32_t isrflags = USART2->ISR;
   uint32_t control_reg1 = USART2->CR1;
-  uint32_t rx_data = 0;
 	
 	
     /* UART in mode Receiver */
     if(((isrflags & USART_ISR_RXNE) != RESET) && ((control_reg1 & USART_CR1_RXNEIE) != RESET))
     {
-			rx_data = (uint16_t) USART2->RDR;
+		/* Read one byte from the receive data register */ 	
 			
-			/* Read one byte from the receive data register */ 
-			
-			UART_BufferRX.buffer[UART_BufferRX.head_pointer] = rx_data;
+			UART_BufferRX.buffer[UART_BufferRX.head_pointer] = USART2->RDR;
 			
 			UART_BufferRX.head_pointer = UART_BufferRX.head_pointer + 1;
 			
