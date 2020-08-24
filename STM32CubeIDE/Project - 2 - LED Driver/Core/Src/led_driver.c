@@ -26,11 +26,11 @@ void user_led_init()
   GPIOA->OSPEEDR &= ~(1 << 11); // Bit 11: 0
   GPIOA->OSPEEDR |=  (1 << 10); // Bit 10: 1
 	
-	// Pull-up pull-down
+  // Pull-up pull-down
   // Bit 10 : 0 
   // Bit 11 :	0
   GPIOA->PUPDR   &= ~(1 << 11); // No pull-up, no pull-down	
-	GPIOA->PUPDR   &= ~(1 << 10); // No pull-up, no pull-down	
+  GPIOA->PUPDR   &= ~(1 << 10); // No pull-up, no pull-down	
 }
 
 

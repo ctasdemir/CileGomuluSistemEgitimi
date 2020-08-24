@@ -20,7 +20,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
+#include "led_driver.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -48,6 +48,7 @@
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -85,7 +86,7 @@ int main(void)
 
 
   /* USER CODE BEGIN 2 */
-	user_led_init();
+  user_led_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -93,12 +94,11 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
 	  user_led_set();
 	  HAL_Delay(1000);
 	  user_led_reset();
 	  HAL_Delay(1000);
+    /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
@@ -138,6 +138,7 @@ void SystemClock_Config(void)
     Error_Handler();
   }
 }
+
 
 
 /* USER CODE BEGIN 4 */
