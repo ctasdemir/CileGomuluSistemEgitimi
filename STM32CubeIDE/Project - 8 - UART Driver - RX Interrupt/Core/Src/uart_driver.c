@@ -23,7 +23,7 @@ static void UART_Error_Handler(void);
 void UART_Init()
 {
 	
-GPIO_InitTypeDef  GPIO_InitStruct;
+  GPIO_InitTypeDef  GPIO_InitStruct;
   
   /*##-1- Enable peripherals and GPIO Clocks #################################*/
   /* Enable GPIO TX/RX clock */  
@@ -75,7 +75,7 @@ GPIO_InitTypeDef  GPIO_InitStruct;
 	
   if(HAL_UART_Init(&UartHandle) != HAL_OK)
   {
-		//ERROR
+    //ERROR
     UART_Error_Handler();
   }
 	
@@ -107,34 +107,25 @@ static void UART_Error_Handler(void)
 
 
 /**
-  * @brief  This function handles UART interrupt request.  
-  * @param  None
-  * @retval None
-  * @Note   This function is redefined in "main.h" and related to DMA 
-  *         used for USART data transmission     
-  */
-void USART2_IRQHandler(void)
-{  
-  uint32_t isrflags = USART2->ISR;
-  uint32_t control_reg1 = USART2->CR1;
-  
-	
-	
-    /* UART in mode Receiver */
-    if(((isrflags & USART_ISR_RXNE) != RESET) && ((control_reg1 & USART_CR1_RXNEIE) != RESET))
-    {
-			rx_data = (uint8_t)USART2->RDR;
-			
-      return;
-    }  
+ * @brief  This function handles UART interrupt request.
+ * @param  None
+ * @retval None
+ */
+void USART2_IRQHandler(void) {
+	uint32_t isrflags = USART2->ISR;
+	uint32_t control_reg1 = USART2->CR1;
 
+	/* UART in mode Receiver */
+	if (((isrflags & USART_ISR_RXNE) != RESET) && ((control_reg1 & USART_CR1_RXNEIE) != RESET)) {
+		rx_data = (uint8_t) USART2->RDR;
 
-		/* UART in mode Transmitter */
-		if(((isrflags & USART_ISR_TXE) != RESET) && ((control_reg1 & USART_CR1_TXEIE) != RESET))
-		{    
-			
-			return;
-		}
-	
+		return;
+	}
+
+	/* UART in mode Transmitter */
+	if (((isrflags & USART_ISR_TXE) != RESET) && ((control_reg1 & USART_CR1_TXEIE) != RESET)) {
+
+		return;
+	}
 }
 

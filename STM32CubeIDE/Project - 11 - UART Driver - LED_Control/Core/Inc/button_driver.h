@@ -7,6 +7,6 @@
 #define BUTTON_OFF 1
 
 void button_init(void);
-int32_t button_get_state(void);
+uint32_t button_get_state(void);
 
 #endif

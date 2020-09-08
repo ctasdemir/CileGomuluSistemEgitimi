@@ -61,6 +61,6 @@ int32_t UART_read_byte(void);
   * @param  None
   * @retval int 
   */
-int UART_bytes_to_read(void);
+uint32_t UART_bytes_to_read(void);
 
 #endif

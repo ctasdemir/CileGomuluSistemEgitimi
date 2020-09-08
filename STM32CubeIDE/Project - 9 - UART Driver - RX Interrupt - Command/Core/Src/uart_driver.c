@@ -113,8 +113,6 @@ static void UART_Error_Handler(void)
   * @brief  This function handles UART interrupt request.  
   * @param  None
   * @retval None
-  * @Note   This function is redefined in "main.h" and related to DMA 
-  *         used for USART data transmission     
   */
 void USART2_IRQHandler(void) {
 	uint32_t isrflags = USART2->ISR;
@@ -122,12 +120,10 @@ void USART2_IRQHandler(void) {
 
 	/* UART in mode Receiver */
 	if (((isrflags & USART_ISR_RXNE) != RESET) && ((control_reg1 & USART_CR1_RXNEIE) != RESET)) {
-		data_buffer[cnt] = (uint16_t) USART2->RDR;
-		cnt++;
+		data_buffer[cnt++] = (uint16_t) USART2->RDR;
 		if (cnt == 6) {
 			cnt = 0;
 			data_flag = 1;
-
 		}
 		return;
 	}
@@ -137,6 +133,5 @@ void USART2_IRQHandler(void) {
 
 		return;
 	}
-
 }
 

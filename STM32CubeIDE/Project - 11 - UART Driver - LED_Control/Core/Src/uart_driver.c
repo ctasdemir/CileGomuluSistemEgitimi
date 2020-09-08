@@ -3,7 +3,7 @@
 #include "uart_driver.h"
 
 
-#define BUFFER_SIZE 256
+#define BUFFER_SIZE (256)
 
 UART_HandleTypeDef UartHandle;
 
@@ -119,33 +119,16 @@ static void UART_Error_Handler(void)
     }
 }
 
-
-
-
-
 /**
   * @brief  Retargets the C library printf function to the USART.
   * @param  None
   * @retval None
   */
-
-
-
-
-#ifdef __GNUC__
 int __io_putchar(int ch)
 {
 	UART_send_byte(ch);
 	  return ch;
 }
-#else
-int fputc(int ch, FILE *f)
-{
-  UART_send_byte(ch);
-  return ch;
-}
-#endif
-
 
 /**
   * @brief  This function handles UART interrupt request.  
@@ -233,15 +216,15 @@ int32_t UART_is_buffer_empty(volatile UART_Buffer_t* buffer)
 
 int32_t UART_read_byte()
 {
-	int kar =  0; 
+	int ch =  0;
 	
 	if(UART_is_buffer_empty(&UART_BufferRX) == 1 )
 	{
-		kar = -1;
+		ch = -1;
 	}
 	else
 	{
-		kar = UART_BufferRX.buffer[UART_BufferRX.tail_pointer++];
+		ch = UART_BufferRX.buffer[UART_BufferRX.tail_pointer++];
 		
 		if ( UART_BufferRX.tail_pointer == BUFFER_SIZE)
 		{
@@ -249,26 +232,29 @@ int32_t UART_read_byte()
 		}
 	}	
 	
-	return kar;	
+	return ch;
 }
 
 
 
-void UART_send_byte_array(uint8_t* buffer, uint32_t size)
+void UART_send_byte_array( uint8_t* buffer, uint32_t size)
 {
 	int i;
 	
-	for(i=0;i<size;i++)
+	for (i = 0; i < size; i++)
 	{
 		UART_send_byte(buffer[i]);
 	}
 }
 
-int UART_bytes_to_read()
+uint32_t UART_bytes_to_read(void)
 {
-	return UART_BufferRX.head_pointer - UART_BufferRX.tail_pointer;
+	if ( UART_BufferRX.head_pointer >= UART_BufferRX.tail_pointer )
+	{
+		return UART_BufferRX.head_pointer - UART_BufferRX.tail_pointer;
+	}
+	else
+	{
+		return ( BUFFER_SIZE + UART_BufferRX.head_pointer - UART_BufferRX.tail_pointer );
+	}
 }
-
-
-
-

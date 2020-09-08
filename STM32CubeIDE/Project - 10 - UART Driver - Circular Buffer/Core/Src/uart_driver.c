@@ -118,29 +118,16 @@ static void UART_Error_Handler(void)
     }
 }
 
-
-
-
-
 /**
   * @brief  Retargets the C library printf function to the USART.
   * @param  None
   * @retval None
   */
-#ifdef __GNUC__
 int __io_putchar(int ch)
 {
 	UART_send_byte(ch);
 	  return ch;
 }
-#else
-int fputc(int ch, FILE *f)
-{
-  UART_send_byte(ch);
-  return ch;
-}
-#endif
-
 
 /**
   * @brief  This function handles UART interrupt request.  
@@ -153,24 +140,23 @@ void USART2_IRQHandler(void)
 {  
   uint32_t isrflags = USART2->ISR;
   uint32_t control_reg1 = USART2->CR1;
-	
-	
-    /* UART in mode Receiver */
-    if(((isrflags & USART_ISR_RXNE) != RESET) && ((control_reg1 & USART_CR1_RXNEIE) != RESET))
-    {
-		/* Read one byte from the receive data register */ 	
-			
-			UART_BufferRX.buffer[UART_BufferRX.head_pointer] = USART2->RDR;
-			
-			UART_BufferRX.head_pointer = UART_BufferRX.head_pointer + 1;
-			
-			if(UART_BufferRX.head_pointer == BUFFER_SIZE)
-			{
-				UART_BufferRX.head_pointer = 0;
-			}
-			
-      return;
-    }  
+
+  /* UART in mode Receiver */
+  if(((isrflags & USART_ISR_RXNE) != RESET) && ((control_reg1 & USART_CR1_RXNEIE) != RESET))
+  {
+	  /* Read one byte from the receive data register */
+
+	  UART_BufferRX.buffer[UART_BufferRX.head_pointer] = USART2->RDR;
+
+	  UART_BufferRX.head_pointer = UART_BufferRX.head_pointer + 1;
+
+	  if(UART_BufferRX.head_pointer == BUFFER_SIZE)
+	  {
+		  UART_BufferRX.head_pointer = 0;
+	  }
+
+	  return;
+  }
 
 
   /* UART in mode Transmitter */
@@ -188,13 +174,12 @@ void USART2_IRQHandler(void)
 		}
 		else
 		{
-		/* Disable the UART Transmit Data Register Empty Interrupt */
-      CLEAR_BIT(USART2->CR1, USART_CR1_TXEIE);
+			/* Disable the UART Transmit Data Register Empty Interrupt */
+			CLEAR_BIT(USART2->CR1, USART_CR1_TXEIE);
 		}			
 		
     return;
   }
-	
 }
 
 void UART_send_byte(uint8_t data)
@@ -250,15 +235,22 @@ void UART_send_byte_array(uint8_t* buffer, uint32_t size)
 {
 	int i;
 	
-	for(i=0;i<size;i++)
+	for( i=0; i<size; i++)
 	{
 		UART_send_byte(buffer[i]);
 	}
 }
 
-int UART_bytes_to_read()
+uint32_t UART_bytes_to_read(void)
 {
-	return UART_BufferRX.head_pointer - UART_BufferRX.tail_pointer;
+	if (UART_BufferRX.head_pointer >= UART_BufferRX.tail_pointer)
+	{
+		return UART_BufferRX.head_pointer - UART_BufferRX.tail_pointer;
+	}
+	else
+	{
+		return (BUFFER_SIZE + UART_BufferRX.head_pointer - UART_BufferRX.tail_pointer);
+	}
 }
 
 

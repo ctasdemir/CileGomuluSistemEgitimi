@@ -19,9 +19,10 @@
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
+#include <stdio.h>
 #include "main.h"
 #include "uart_driver.h"
-
+#include "button_driver.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -109,11 +110,11 @@ void send_time_string()
 {
 
 	uint32_t n = 0;
-	static uint32_t zaman;
-	zaman++;
+	static uint32_t time;
+	time++;
 
 	n = UART_bytes_to_read();
-	printf("zaman:%d gelen_veri:%d Buton Durum:%d\n\r",zaman,n,button_get_state());
+	printf("Zaman:%u gelen_veri boyutu[byte]:%u Buton Durum:%u\n\r", (unsigned int)time, (unsigned int)n, (unsigned int)button_get_state());
 }
 
 /**

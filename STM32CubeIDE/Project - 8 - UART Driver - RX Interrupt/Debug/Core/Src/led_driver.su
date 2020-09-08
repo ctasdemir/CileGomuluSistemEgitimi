@@ -1,0 +1,4 @@
+led_driver.c:5:6:user_led_init	16	static
+led_driver.c:37:6:user_led_toggle	8	static
+led_driver.c:43:6:user_led_set	8	static
+led_driver.c:49:6:user_led_reset	8	static

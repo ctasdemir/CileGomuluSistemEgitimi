@@ -39,7 +39,7 @@ void button_init()
 	
 }
 
-int32_t button_get_state(void)
+uint32_t button_get_state(void)
 {
 	//BUTTON ==>  GPIOC - 13. pin
 	if( ((GPIOC->IDR & (1<<13)) != 0 ))

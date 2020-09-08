@@ -59,8 +59,8 @@ int32_t UART_read_byte(void);
   * @brief Returns the number of bytes
 					 waiting in the UART receive buffer
   * @param  None
-  * @retval int 
+  * @retval uint32_t
   */
-int UART_bytes_to_read(void);
+uint32_t UART_bytes_to_read(void);
 
 #endif
