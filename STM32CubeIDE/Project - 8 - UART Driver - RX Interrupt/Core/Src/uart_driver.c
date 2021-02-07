@@ -73,20 +73,18 @@ void UART_Init()
   UartHandle.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT; 
 	
 	
-  if(HAL_UART_Init(&UartHandle) != HAL_OK)
-  {
-    //ERROR
-    UART_Error_Handler();
-  }
-	
-/* 4- Enable UART Receive Data Register Not Empty */
+  if (HAL_UART_Init(&UartHandle) != HAL_OK) {
+        //ERROR
+        UART_Error_Handler();
+    }
+
+   /* 4- Enable UART Receive Data Register Not Empty */
    SET_BIT(USART2->CR1, USART_CR1_RXNEIE);
 
-	
-	/* 5 - Enable UART Interrupt in NVIC */
-	
-  HAL_NVIC_SetPriority(USART2_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(USART2_IRQn);
+   /* 5 - Enable UART Interrupt in NVIC */
+
+   HAL_NVIC_SetPriority(USART2_IRQn, 0, 0);
+   HAL_NVIC_EnableIRQ(USART2_IRQn);
 }
 
 

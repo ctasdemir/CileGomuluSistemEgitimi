@@ -710,19 +710,18 @@ void UART_Init()
  8000422:	625a      	str	r2, [r3, #36]	; 0x24
 	
 	
-  if(HAL_UART_Init(&UartHandle) != HAL_OK)
+  if (HAL_UART_Init(&UartHandle) != HAL_OK) {
  8000424:	4b0d      	ldr	r3, [pc, #52]	; (800045c <UART_Init+0x104>)
  8000426:	0018      	movs	r0, r3
  8000428:	f000 ff8e 	bl	8001348 <HAL_UART_Init>
  800042c:	1e03      	subs	r3, r0, #0
  800042e:	d001      	beq.n	8000434 <UART_Init+0xdc>
-  {
-    //ERROR
-    UART_Error_Handler();
+        //ERROR
+        UART_Error_Handler();
  8000430:	f000 f818 	bl	8000464 <UART_Error_Handler>
-  }
-	
-/* 4- Enable UART Receive Data Register Not Empty */
+    }
+
+   /* 4- Enable UART Receive Data Register Not Empty */
    SET_BIT(USART2->CR1, USART_CR1_RXNEIE);
  8000434:	4b0a      	ldr	r3, [pc, #40]	; (8000460 <UART_Init+0x108>)
  8000436:	681a      	ldr	r2, [r3, #0]
@@ -731,15 +730,14 @@ void UART_Init()
  800043c:	430a      	orrs	r2, r1
  800043e:	601a      	str	r2, [r3, #0]
 
-	
-	/* 5 - Enable UART Interrupt in NVIC */
-	
-  HAL_NVIC_SetPriority(USART2_IRQn, 0, 0);
+   /* 5 - Enable UART Interrupt in NVIC */
+
+   HAL_NVIC_SetPriority(USART2_IRQn, 0, 0);
  8000440:	2200      	movs	r2, #0
  8000442:	2100      	movs	r1, #0
  8000444:	201c      	movs	r0, #28
  8000446:	f000 f96b 	bl	8000720 <HAL_NVIC_SetPriority>
-  HAL_NVIC_EnableIRQ(USART2_IRQn);
+   HAL_NVIC_EnableIRQ(USART2_IRQn);
  800044a:	201c      	movs	r0, #28
  800044c:	f000 f97d 	bl	800074a <HAL_NVIC_EnableIRQ>
 }
